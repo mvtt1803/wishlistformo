@@ -30,8 +30,15 @@ list.innerHTML="Error loading items"
 return
 }
 
+list.style.opacity = 0
+boughtList.style.opacity = 0
+
+setTimeout(() => {
+
 list.innerHTML=""
 boughtList.innerHTML=""
+
+},120)
 
 if(!data || data.length===0){
 list.innerHTML="<p>Mo is satisfied (for now).</p>"
@@ -166,7 +173,27 @@ loadItems()
 
 }
 
+const stars = document.querySelectorAll(".star")
+const desireInput = document.getElementById("desire")
 
+stars.forEach(star => {
+
+star.addEventListener("click", () => {
+
+const value = star.dataset.value
+desireInput.value = value
+
+stars.forEach(s => {
+s.classList.remove("active")
+})
+
+for(let i = 0; i < value; i++){
+stars[i].classList.add("active")
+}
+
+})
+
+})
 
 if(e.target.classList.contains("buy-btn")){
 
@@ -216,3 +243,10 @@ loadItems()
 })
 
 loadItems()
+
+setTimeout(() => {
+
+list.style.opacity = 1
+boughtList.style.opacity = 1
+
+},150)
