@@ -47,11 +47,11 @@ div.className="item"
 
 div.innerHTML=`
 
-${item.image ? `<img class="thumb" src="${item.image}">` : ""}
+<img class="thumb" src="${item.image || 'https://placehold.co/80x80?text=%F0%9F%8E%81'}">
 
 <div class="item-info">
 <strong>${item.name}</strong>
-<span>${item.price ? item.price+" k VND":""}</span>
+<span>${item.price ? item.price+" k":""}</span>
 <span>${"⭐".repeat(item.desire || 1)}</span>
 ${item.link ? `<a href="${item.link}" target="_blank">Open link</a>`:""}
 </div>
@@ -186,7 +186,7 @@ loadItems()
 if(e.target.classList.contains("edit-btn")){
 
 const newName = prompt("Edit item name")
-const newPrice = prompt("Edit price (k VND)")
+const newPrice = prompt("Edit price (k)")
 
 if(!newName) return
 
