@@ -112,14 +112,14 @@ reader.readAsDataURL(file)
 
 })
 
-form.addEventListener("submit",async e=>{
+form.addEventListener("submit", async e => {
 
 e.preventDefault()
 
 const item = {
-name: document.getElementById("name").value,
+name: document.getElementById("name").value.trim(),
 price: parseInt(document.getElementById("price").value) || null,
-link: document.getElementById("link").value,
+link: document.getElementById("link").value.trim(),
 desire: parseInt(document.getElementById("desire").value),
 image: uploadedImage || null,
 bought:false
@@ -131,9 +131,14 @@ const { error } = await client
 
 if(error){
 console.error("Insert error:",error)
+return
 }
 
 form.reset()
+
+uploadedImage = null
+preview.style.display = "none"
+preview.src = ""
 
 loadItems()
 
@@ -180,13 +185,17 @@ loadItems()
 
 if(e.target.classList.contains("edit-btn")){
 
-const newName=prompt("Edit item name")
+const newName = prompt("Edit item name")
+const newPrice = prompt("Edit price (k VND)")
 
 if(!newName) return
 
 await client
 .from("wishlist")
-.update({name:newName})
+.update({
+name:newName,
+price: parseInt(newPrice) || null
+})
 .eq("id",id)
 
 loadItems()

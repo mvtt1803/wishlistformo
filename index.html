@@ -16,11 +16,8 @@
 <form id="form">
 
 <input id="name" placeholder="Item name" required>
-
-<input id="price" type="number" placeholder="Price">
-
+<input id="price" type="number" placeholder="Price (k VND)">
 <input id="link" placeholder="Product link">
-
 <input id="image" placeholder="Image URL (optional)">
 
 <label class="upload-btn">
@@ -44,15 +41,8 @@ Upload Image
 
 <div id="list-section">
 
-<h2>Wishlist</h2>
-<div id="list"></div>
-
-<h2>Purchased</h2>
-<div id="boughtList"></div>
-
-</div>
-
 <div class="controls">
+
 <label>Sort by:</label>
 
 <select id="sortField">
@@ -66,9 +56,16 @@ Upload Image
 </select>
 
 <button id="sortBtn">Sort</button>
+
 </div>
 
+<h2>Wishlist</h2>
 <div id="list"></div>
+
+<h2>Purchased</h2>
+<div id="boughtList"></div>
+
+</div>
 
 </div>
 
