@@ -34,9 +34,9 @@ data.forEach(item => {
 
   div.innerHTML = `
     <strong>${item.name}</strong><br>
-    ${item.price ? item.price + " k VND" : ""}<br>
+    ${item.price ? `${item.price} k VND` : ""}<br>
     ${"⭐".repeat(item.desire || 1)}<br>
-    <a href="${item.link}" target="_blank">Open link</a>
+    <a href="${item.link}" target="_blank" rel="noopener">Open link</a>
   `
 
   list.appendChild(div)
