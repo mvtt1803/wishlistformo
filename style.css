@@ -134,21 +134,11 @@ background:#e53935;
 grid-template-columns:1fr;
 }
 
-.rating{
-display:flex;
-gap:6px;
-font-size:22px;
-cursor:pointer;
-}
-
-.star{
-opacity:0.4;
-transition:0.15s;
-}
-
-.star.active{
-opacity:1;
-transform:scale(1.1);
+.thumb{
+width:70px;
+height:70px;
+object-fit:cover;
+border-radius:10px;
 }
 
 h1{
