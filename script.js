@@ -15,7 +15,7 @@ async function loadItems() {
 const { data, error } = await client
   .from("wishlist")
   .select("*")
-  .order(sortField, { ascending: sortDirection === "asc" })
+  .order(sortField, { ascending: sortDirection === "asc", nullsFirst: false })
 
 if (error) {
   console.error("Supabase error:", error)
@@ -72,6 +72,9 @@ if (error) {
 }
 
 form.reset()
+
+if (!sortField) sortField = "desire"
+if (!sortDirection) sortDirection = "desc"
 
 loadItems()
 
