@@ -71,6 +71,29 @@ if (error) {
   console.error("Insert error:", error)
 }
 
+const stars = document.querySelectorAll(".star")
+const desireInput = document.getElementById("desire")
+
+function updateStars(value){
+stars.forEach(star=>{
+if(star.dataset.value <= value){
+star.classList.add("active")
+}else{
+star.classList.remove("active")
+}
+})
+}
+
+stars.forEach(star=>{
+star.addEventListener("click", ()=>{
+const value = star.dataset.value
+desireInput.value = value
+updateStars(value)
+})
+})
+
+updateStars(desireInput.value)
+
 form.reset()
 
 if (!sortField) sortField = "desire"
