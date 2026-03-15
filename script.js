@@ -7,7 +7,11 @@ const client = createClient(SUPABASE_URL, SUPABASE_KEY)
 const list = document.getElementById("list")
 const boughtList = document.getElementById("boughtList")
 const form = document.getElementById("form")
+const imageInput = document.getElementById("image")
+const fileInput = document.getElementById("imageUpload")
+const preview = document.getElementById("preview")
 
+let uploadedImage = null
 let sortField = "desire"
 let sortDirection = "desc"
 
@@ -75,18 +79,49 @@ container.appendChild(div)
 
 }
 
+imageInput.addEventListener("input", () => {
 
+if(imageInput.value){
+
+preview.src = imageInput.value
+preview.style.display = "block"
+uploadedImage = imageInput.value
+
+}
+
+})
+
+fileInput.addEventListener("change", () => {
+
+const file = fileInput.files[0]
+
+if(!file) return
+
+const reader = new FileReader()
+
+reader.onload = function(e){
+
+preview.src = e.target.result
+preview.style.display = "block"
+
+uploadedImage = e.target.result
+
+}
+
+reader.readAsDataURL(file)
+
+})
 
 form.addEventListener("submit",async e=>{
 
 e.preventDefault()
 
-const item={
-name:document.getElementById("name").value,
-price:parseInt(document.getElementById("price").value)||null,
-link:document.getElementById("link").value,
-desire:parseInt(document.getElementById("desire").value),
-image:document.getElementById("image").value||null,
+const item = {
+name: document.getElementById("name").value,
+price: parseInt(document.getElementById("price").value) || null,
+link: document.getElementById("link").value,
+desire: parseInt(document.getElementById("desire").value),
+image: uploadedImage || null,
 bought:false
 }
 

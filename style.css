@@ -141,6 +141,27 @@ object-fit:cover;
 border-radius:10px;
 }
 
+.preview{
+width:120px;
+height:120px;
+object-fit:cover;
+border-radius:10px;
+margin-top:8px;
+box-shadow:0 4px 10px rgba(0,0,0,0.15);
+}
+
+.upload-btn{
+background:#eee;
+padding:8px;
+border-radius:6px;
+cursor:pointer;
+text-align:center;
+}
+
+.upload-btn input{
+display:none;
+}
+
 h1{
 grid-column:1;
 }
