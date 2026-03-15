@@ -26,7 +26,7 @@ if (error) {
 list.innerHTML = ""
 
 if (!data || data.length === 0) {
-  list.innerHTML = "<p>No wishlist items yet.</p>"
+  list.innerHTML = "<p>Mo is satisfied (for now).</p>"
   return
 }
 
