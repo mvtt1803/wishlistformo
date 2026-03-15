@@ -38,7 +38,7 @@ div.className = "item"
 div.innerHTML = `
 <div class="item-info">
 <strong>${item.name}</strong>
-<span>${item.price ? item.price + " k VND" : ""}</span>
+<span>${item.price ? item.price + ".000" : ""}</span>
 <span>${"⭐".repeat(item.desire || 1)}</span>
 ${item.link ? `<a href="${item.link}" target="_blank">Open link</a>` : ""}
 </div>
