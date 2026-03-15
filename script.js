@@ -1,5 +1,5 @@
 const SUPABASE_URL = "https://eijqtqlvdtggyvqhchya.supabase.co"
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpanF0cWx2ZHRnZ3l2cWhjaHlhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0NjE1MDksImV4cCI6MjA4OTAzNzUwOX0.qAdJDwMLgqf7baaSd_BrCKMUl_j47OkqAguEK4k8p6s"
+const SUPABASE_KEY = "..."
 
 const { createClient } = window.supabase
 const client = createClient(SUPABASE_URL, SUPABASE_KEY)
@@ -7,10 +7,10 @@ const client = createClient(SUPABASE_URL, SUPABASE_KEY)
 const list = document.getElementById("list")
 const form = document.getElementById("form")
 
-async function loadItems() {
-
 let sortField = "desire"
 let sortDirection = "desc"
+
+async function loadItems() {
 
 const { data, error } = await client
   .from("wishlist")
@@ -40,7 +40,7 @@ div.innerHTML = `
 <strong>${item.name}</strong>
 <span>${item.price ? item.price + " k VND" : ""}</span>
 <span>${"⭐".repeat(item.desire || 1)}</span>
-<a href="${item.link}" target="_blank">Open link</a>
+${item.link ? `<a href="${item.link}" target="_blank">Open link</a>` : ""}
 </div>
 
 <button class="delete-btn" data-id="${item.id}">Delete</button>
@@ -102,3 +102,5 @@ sortDirection = document.getElementById("sortDirection").value
 loadItems()
 
 })
+
+loadItems()
