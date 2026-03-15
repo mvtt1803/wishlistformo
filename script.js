@@ -35,10 +35,16 @@ data.forEach(item => {
 const div = document.createElement("div")
 div.className = "item"
 
+const thumbnail = item.link
+  ? `https://api.microlink.io/?url=${encodeURIComponent(item.link)}&screenshot=false&meta=false`
+  : null
+
 div.innerHTML = `
+${thumbnail ? `<img class="thumb" src="${thumbnail}" />` : ""}
+
 <div class="item-info">
 <strong>${item.name}</strong>
-<span>${item.price ? item.price + "k" : ""}</span>
+<span>${item.price ? item.price + " k VND" : ""}</span>
 <span>${"⭐".repeat(item.desire || 1)}</span>
 ${item.link ? `<a href="${item.link}" target="_blank">Open link</a>` : ""}
 </div>
@@ -85,11 +91,20 @@ star.classList.remove("active")
 }
 
 stars.forEach(star=>{
-star.addEventListener("click", ()=>{
-const value = star.dataset.value
-desireInput.value = value
-updateStars(value)
+
+star.addEventListener("mouseover", ()=>{
+updateStars(star.dataset.value)
 })
+
+star.addEventListener("click", ()=>{
+desireInput.value = star.dataset.value
+updateStars(desireInput.value)
+})
+
+})
+
+document.querySelector(".rating").addEventListener("mouseleave", ()=>{
+updateStars(desireInput.value)
 })
 
 updateStars(desireInput.value)
