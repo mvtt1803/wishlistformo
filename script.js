@@ -35,16 +35,10 @@ data.forEach(item => {
 const div = document.createElement("div")
 div.className = "item"
 
-const thumbnail = item.link
-  ? `https://api.microlink.io/?url=${encodeURIComponent(item.link)}&screenshot=false&meta=false`
-  : null
-
 div.innerHTML = `
-${thumbnail ? `<img class="thumb" src="${thumbnail}" />` : ""}
-
 <div class="item-info">
 <strong>${item.name}</strong>
-<span>${item.price ? item.price + " k VND" : ""}</span>
+<span>${item.price ? item.price + "k" : ""}</span>
 <span>${"⭐".repeat(item.desire || 1)}</span>
 ${item.link ? `<a href="${item.link}" target="_blank">Open link</a>` : ""}
 </div>
@@ -76,38 +70,6 @@ const { error } = await client
 if (error) {
   console.error("Insert error:", error)
 }
-
-const stars = document.querySelectorAll(".star")
-const desireInput = document.getElementById("desire")
-
-function updateStars(value){
-stars.forEach(star=>{
-if(star.dataset.value <= value){
-star.classList.add("active")
-}else{
-star.classList.remove("active")
-}
-})
-}
-
-stars.forEach(star=>{
-
-star.addEventListener("mouseover", ()=>{
-updateStars(star.dataset.value)
-})
-
-star.addEventListener("click", ()=>{
-desireInput.value = star.dataset.value
-updateStars(desireInput.value)
-})
-
-})
-
-document.querySelector(".rating").addEventListener("mouseleave", ()=>{
-updateStars(desireInput.value)
-})
-
-updateStars(desireInput.value)
 
 form.reset()
 
